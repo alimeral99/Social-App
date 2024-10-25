@@ -1,0 +1,70 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #ffffff;
+  height: 50px;
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
+}
+
+.navbar-logo {
+  color: #b92b27;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.icon-container > .navbar-icon {
+  font-size: 25px;
+  vertical-align: bottom;
+  margin-top: 5px;
+  color: gray;
+}
+
+.icon-container:hover {
+  background-color: #f7f7f8;
+}
+
+.navbar-searchbox {
+  display: flex;
+  border: 1px solid grey;
+  width: 40%;
+  padding: 5px;
+}
+
+.navbar-searchbox > .input-icon {
+  font-size: 20px;
+  color: gray;
+}
+
+.navbar-searchbox > input {
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-button {
+  margin-left: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: #b92b27;
+  color: #ffffff;
+  padding: 7px 10px;
+  cursor: pointer;
+}
