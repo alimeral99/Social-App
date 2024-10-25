@@ -1,0 +1,37 @@
+.sidebar-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar-option:hover {
+  background: rgb(211, 211, 211);
+  border-radius: 5px;
+}
+.sidebar-option > img {
+  height: 30px;
+  width: 30px;
+
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.sidebar-option > p {
+  margin-left: 10px;
+  color: gray;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.sidebar-option > .text {
+  margin-left: 23px;
+  color: gray;
+  font-weight: 400;
+  font-size: 13px;
+}

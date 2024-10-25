@@ -1,16 +1,11 @@
 import React from "react";
+import "./Sidebar.css";
+import SidebarOption from "./SidebarOption";
 
 function Sidebar() {
   return (
-    <div>
-      <h1>test</h1>
-      <h1>test</h1>
-
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-
-      <h1>test</h1>
+    <div className="sidebar">
+      <SidebarOption />
     </div>
   );
 }
