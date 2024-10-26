@@ -1,3 +1,8 @@
 .sidebar {
-  margin-left: 30px;
+  position: fixed;
+  left: 0;
+  width: 240px;
+  height: 90vh;
+  z-index: 1;
+  overflow-y: scroll;
 }

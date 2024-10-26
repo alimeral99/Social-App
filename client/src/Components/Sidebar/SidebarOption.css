@@ -1,6 +1,8 @@
 .sidebar-options {
   display: flex;
   flex-direction: column;
+  width: fit-content;
+  margin-left: 50px;
 }
 
 .sidebar-option {
@@ -8,6 +10,7 @@
   align-items: center;
   padding: 10px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .sidebar-option:hover {
@@ -15,8 +18,8 @@
   border-radius: 5px;
 }
 .sidebar-option > img {
-  height: 30px;
-  width: 30px;
+  height: 24px;
+  width: 24px;
 
   border-radius: 5px;
   margin-left: 20px;
@@ -26,12 +29,6 @@
   margin-left: 10px;
   color: gray;
   font-weight: 400;
-  font-size: 13px;
-}
-
-.sidebar-option > .text {
-  margin-left: 23px;
-  color: gray;
-  font-weight: 400;
-  font-size: 13px;
+  text-transform: capitalize;
+  font-size: 15px;
 }
