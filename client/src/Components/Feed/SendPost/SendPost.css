@@ -1,0 +1,73 @@
+.send-post {
+  border: 1px solid lightgray;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 700px;
+}
+
+.send-postHeader {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.sendPost-image {
+  margin-right: 15px;
+}
+
+.send-postHeader > input {
+  width: 100%;
+  padding: 10px 7px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  outline: none;
+  background-color: #f7f7f8;
+}
+
+.send-postLinks {
+  position: relative;
+  margin-top: 5px;
+  color: gray;
+  display: flex;
+  justify-content: space-around;
+}
+
+.send-postLinks > .link-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+  width: 33%;
+}
+
+.link-container:nth-of-type(2) {
+  position: relative;
+  padding: 10px 20px;
+}
+
+.link-container:nth-of-type(2)::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50;
+  height: 60%;
+  width: 1px;
+  background-color: #ccc;
+}
+
+.link-container:nth-of-type(2)::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50;
+  height: 60%;
+  width: 1px;
+  background-color: #ccc;
+}
+
+.send-postLinks > .link-container:hover {
+  background-color: #f7f7f7;
+}
