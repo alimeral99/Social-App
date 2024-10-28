@@ -1,0 +1,20 @@
+.fakeAd {
+  margin-bottom: 15px;
+  border: 1px solid lightgray;
+  padding: 10px;
+  width: 80%;
+}
+
+.fakeAd > img {
+  cursor: pointer;
+  width: 240px;
+}
+
+.fakeAd > button {
+  width: 100%;
+  text-align: center;
+  border: none;
+  background-color: #ffff;
+  padding: 5px;
+  cursor: pointer;
+}
