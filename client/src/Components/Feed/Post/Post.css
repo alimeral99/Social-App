@@ -17,11 +17,18 @@
 }
 
 .post-owner > .postOwner-name {
-  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.post-owner > .post-createdDate {
+  font-size: 15px;
+  font-weight: 400;
+  color: gray;
 }
 
 .post-owner > button {
-  background-color: #b92b27;
+  background-color: #2e69ff;
   border: none;
   padding: 5px 15px;
   color: white;
@@ -30,6 +37,7 @@
 }
 
 .post-body {
+  font-family: "Georgia", serif;
   margin-top: 10px;
   max-width: 680px;
   margin: 0 auto;
@@ -37,13 +45,12 @@
 }
 
 .post-body > .post-name {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
 
 .post-content > p {
-  font-family: "Georgia", serif;
   font-size: 15px;
   line-height: 1.6;
   color: #333;

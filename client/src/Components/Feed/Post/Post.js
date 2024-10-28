@@ -2,6 +2,7 @@ import React from "react";
 import "./Post.css";
 
 import Avatar from "react-avatar";
+import LikeCommentButtons from "./LikeCommentButtons/LikeCommentButtons";
 
 function Post() {
   return (
@@ -14,6 +15,7 @@ function Post() {
           <button>Follow</button>
         </div>
       </div>
+
       <div className="post-body">
         <h3 className="post-name">
           What is the saddest truth about smart people?
@@ -45,6 +47,7 @@ function Post() {
           </p>
         </div>
       </div>
+      <LikeCommentButtons />
     </div>
   );
 }

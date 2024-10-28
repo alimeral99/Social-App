@@ -1,0 +1,20 @@
+.like-commentButtons {
+  display: flex;
+}
+
+.like-commentButtons > .button-container {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  cursor: pointer;
+  color: #333;
+  padding: 10px;
+}
+
+.like-commentButtons > .button-container:hover {
+  background-color: #f7f7f7;
+}
+
+.button-container > span {
+  margin-left: 5px;
+}

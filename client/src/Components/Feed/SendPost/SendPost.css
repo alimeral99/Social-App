@@ -40,7 +40,7 @@
   justify-content: center;
   cursor: pointer;
   padding: 5px;
-  width: 33%;
+  width: 31%;
 }
 
 .link-container:nth-of-type(2) {
@@ -53,8 +53,8 @@
   position: absolute;
   left: -10px;
   top: 50;
-  height: 60%;
-  width: 1px;
+  height: 40%;
+  width: 0.5px;
   background-color: #ccc;
 }
 
@@ -63,8 +63,8 @@
   position: absolute;
   right: -10px;
   top: 50;
-  height: 60%;
-  width: 1px;
+  height: 40%;
+  width: 0.5px;
   background-color: #ccc;
 }
 
