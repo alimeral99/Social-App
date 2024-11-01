@@ -7,6 +7,14 @@ app.get("/api", (req, res) => {
   res.send("API  working");
 });
 
+app.use(express.json());
+
+const userRouter = require("./routes/user");
+const questionRouter = require("./routes/question");
+
+app.use("/user", userRouter);
+app.use("/question", questionRouter);
+
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {

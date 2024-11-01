@@ -1,25 +1,21 @@
-const mongoose = require("mongoose");
+const Question = require("../models/question");
 
-const questionSchema = new mongoose.Schema({
-  questionText: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+const addQuestion = async (req, res) => {
+  const { questionText, author } = req.body;
 
-const Question = mongoose.model("Question", questionSchema);
+  try {
+    const newQuestion = new Question({
+      questionText,
+      author,
+    });
 
-module.exports = Question;
+    await newQuestion.save();
+    res.status(201).json(newQuestion);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+module.exports = {
+  addQuestion,
+};
