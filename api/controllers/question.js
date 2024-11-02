@@ -16,6 +16,17 @@ const addQuestion = async (req, res) => {
   }
 };
 
+const getAllQuestions = async (req, res) => {
+  try {
+    const questions = await Question.find().populate("author", "username");
+
+    res.status(200).json(questions);
+  } catch (error) {
+    res.status(500).json("Server Erro");
+  }
+};
+
 module.exports = {
   addQuestion,
+  getAllQuestions,
 };

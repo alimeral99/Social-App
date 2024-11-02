@@ -1,4 +1,4 @@
-.post {
+.question {
   border: 1px solid lightgray;
   background-color: #ffffff;
   padding: 10px 15px;
@@ -7,27 +7,27 @@
   margin-top: 15px;
 }
 
-.post-header {
+.question-header {
   display: flex;
   align-items: center;
 }
 
-.post-header > .post-owner {
+.question-header > .question-owner {
   margin-left: 10px;
 }
 
-.post-owner > .postOwner-name {
+.question-owner > .questionOwner-name {
   font-size: 16px;
   font-weight: 300;
 }
 
-.post-owner > .post-createdDate {
+.question-owner > .question-createdDate {
   font-size: 15px;
   font-weight: 400;
   color: gray;
 }
 
-.post-owner > button {
+.question-owner > button {
   background-color: #2e69ff;
   border: none;
   padding: 5px 15px;
@@ -36,7 +36,7 @@
   border-radius: 5px;
 }
 
-.post-body {
+.question-body {
   font-family: "Georgia", serif;
   margin-top: 10px;
   max-width: 680px;
@@ -44,13 +44,13 @@
   padding: 10px;
 }
 
-.post-body > .post-name {
+.question-body > .question-name {
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 5px;
 }
 
-.post-content > p {
+.question-content > p {
   font-size: 15px;
   line-height: 1.6;
   color: #333;

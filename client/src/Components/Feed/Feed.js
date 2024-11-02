@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Feed.css";
-import Post from "./Post/Post";
 import SendPost from "./SendPost/SendPost";
+import Question from "./Question/Question";
+import { getAllQuestions } from "../../Features/Question/QuestionSlice/QuestionApi";
+
+import { useSelector, useDispatch } from "react-redux";
 
 function Feed() {
+  const { questions } = useSelector((state) => state.question);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getAllQuestions(dispatch);
+  }, []);
+
   return (
     <div className="feed">
       <SendPost />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+
+      {questions?.map((question) => (
+        <Question question={question} key={question.id} />
+      ))}
     </div>
   );
 }

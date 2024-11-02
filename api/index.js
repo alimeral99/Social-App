@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const cors = require("cors");
 require("dotenv").config();
 
 app.get("/api", (req, res) => {
@@ -8,6 +9,7 @@ app.get("/api", (req, res) => {
 });
 
 app.use(express.json());
+app.use(cors());
 
 const userRouter = require("./routes/user");
 const questionRouter = require("./routes/question");
