@@ -13,9 +13,11 @@ app.use(cors());
 
 const userRouter = require("./routes/user");
 const questionRouter = require("./routes/question");
+const answerRouter = require("./routes/answer");
 
 app.use("/user", userRouter);
 app.use("/question", questionRouter);
+app.use("/answer", answerRouter);
 
 mongoose
   .connect(process.env.MONGO_URL)

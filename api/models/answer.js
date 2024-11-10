@@ -6,7 +6,13 @@ const answerSchema = new mongoose.Schema({
     required: true,
   },
   author: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  questionId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Question",
     required: true,
   },
   likes: {

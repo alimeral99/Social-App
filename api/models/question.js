@@ -24,6 +24,16 @@ const questionSchema = new mongoose.Schema({
   },
 });
 
+questionSchema.virtual("answers", {
+  ref: "Answer",
+  localField: "_id",
+  foreignField: "questionId",
+  justOne: false,
+});
+
+questionSchema.set("toObject", { virtuals: true });
+questionSchema.set("toJSON", { virtuals: true });
+
 const Question = mongoose.model("Question", questionSchema);
 
 module.exports = Question;

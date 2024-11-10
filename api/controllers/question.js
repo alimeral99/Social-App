@@ -1,12 +1,14 @@
 const Question = require("../models/question");
 
 const addQuestion = async (req, res) => {
-  const { questionText, author } = req.body;
+  const { questionText, authorId } = req.body;
+
+  console.log(questionText, authorId);
 
   try {
     const newQuestion = new Question({
       questionText,
-      author,
+      author: authorId,
     });
 
     await newQuestion.save();
@@ -18,7 +20,10 @@ const addQuestion = async (req, res) => {
 
 const getAllQuestions = async (req, res) => {
   try {
-    const questions = await Question.find().populate("author", "username");
+    const questions = await Question.find().populate({
+      path: "answers",
+      populate: { path: "author", select: "username" },
+    });
 
     res.status(200).json(questions);
   } catch (error) {
