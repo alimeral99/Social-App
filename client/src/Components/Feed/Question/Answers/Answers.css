@@ -1,0 +1,37 @@
+.answer {
+  display: flex;
+  padding: 10px;
+}
+
+.answer-content {
+  padding: 5px;
+}
+
+.answer-header {
+  display: flex;
+  align-items: center;
+}
+
+.answerOwner-username {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.answer-createdDate {
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 5px;
+  color: #495057;
+}
+
+.answer-text {
+  margin-top: 4px;
+  font-size: 17px;
+  color: #555;
+}
+
+.answer-buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}

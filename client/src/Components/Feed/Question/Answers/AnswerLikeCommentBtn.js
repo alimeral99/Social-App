@@ -1,13 +1,13 @@
 import React from "react";
-import "./LikeCommentButtons.css";
+import "./Answers.css";
 
 import { SlLike } from "react-icons/sl";
 import { SlDislike } from "react-icons/sl";
 import { GoComment } from "react-icons/go";
 
-function LikeCommentButtons() {
+function AnswerLikeCommentBtn() {
   return (
-    <div className="like-commentButtons">
+    <div className="answer-buttons">
       <div className="button-container">
         <SlLike />
         <span className="like-info">55</span>
@@ -26,4 +26,4 @@ function LikeCommentButtons() {
   );
 }
 
-export default LikeCommentButtons;
+export default AnswerLikeCommentBtn;

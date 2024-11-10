@@ -24,7 +24,7 @@
 .question-owner > .question-createdDate {
   font-size: 15px;
   font-weight: 400;
-  color: gray;
+  color: #495057;
 }
 
 .question-owner > button {
@@ -41,17 +41,15 @@
   margin-top: 10px;
   max-width: 680px;
   margin: 0 auto;
-  padding: 10px;
 }
 
-.question-body > .question-name {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.question-content > p {
-  font-size: 15px;
+.question-body > .question-content {
+  font-size: 17px;
+  margin-top: 5px;
   line-height: 1.6;
   color: #333;
 }
+
+/* .question-answers {
+  padding: 10px;
+} */
