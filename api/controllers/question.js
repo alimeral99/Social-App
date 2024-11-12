@@ -1,14 +1,13 @@
 const Question = require("../models/question");
+const { v4: uuidv4 } = require("uuid");
 
 const addQuestion = async (req, res) => {
-  const { questionText, authorId } = req.body;
-
-  console.log(questionText, authorId);
+  const { question } = req.body;
 
   try {
     const newQuestion = new Question({
-      questionText,
-      author: authorId,
+      questionText: question,
+      author: uuidv4(),
     });
 
     await newQuestion.save();

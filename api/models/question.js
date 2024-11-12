@@ -6,9 +6,7 @@ const questionSchema = new mongoose.Schema({
     required: true,
   },
   author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
+    type: String,
   },
   likes: {
     type: Number,

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 .question {
   border: 1px solid lightgray;
   background-color: #ffffff;
@@ -41,7 +43,7 @@
 }
 
 .question-body {
-  font-family: "Georgia", serif;
+  font-family: "Roboto", sans-serif;
   margin-top: 10px;
   max-width: 680px;
   margin: 0 auto;
@@ -60,7 +62,7 @@
   overflow: hidden;
   margin-top: 10px;
   padding: 0;
-  transition: max-height 0.2s ease, opacity 0.2s ease;
+  transition: max-height 0.1s ease, opacity 0.1s ease;
 }
 
 .question-answers.open {

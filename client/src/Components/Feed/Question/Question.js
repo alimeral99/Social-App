@@ -37,7 +37,7 @@ function Question({ question }) {
       {isOpen && (
         <div className={`question-answers ${isOpen ? "open" : "close"}`}>
           {question.answers.map((answer) => (
-            <Answers answer={answer} />
+            <Answers answer={answer} key={answer._id} />
           ))}
         </div>
       )}

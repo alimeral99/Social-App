@@ -1,4 +1,4 @@
-.send-post {
+.create-question {
   border: 1px solid lightgray;
   background-color: #ffffff;
   padding: 10px 15px;
@@ -6,18 +6,18 @@
   max-width: 700px;
 }
 
-.send-postHeader {
+.create-questionHeader {
   display: flex;
   align-items: center;
   margin-left: 10px;
   width: 100%;
 }
 
-.sendPost-image {
+.createQuestion-image {
   margin-right: 15px;
 }
 
-.send-postHeader > input {
+.create-questionHeader > input {
   width: 100%;
   padding: 10px 7px;
   border-radius: 10px;
@@ -26,7 +26,7 @@
   background-color: #f7f7f8;
 }
 
-.send-postLinks {
+.create-questionLinks {
   position: relative;
   margin-top: 5px;
   color: gray;
@@ -34,7 +34,7 @@
   justify-content: space-around;
 }
 
-.send-postLinks > .link-container {
+.create-questionLinks > .link-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,6 +68,6 @@
   background-color: #ccc;
 }
 
-.send-postLinks > .link-container:hover {
+.create-QuestionLinks > .link-container:hover {
   background-color: #f7f7f7;
 }

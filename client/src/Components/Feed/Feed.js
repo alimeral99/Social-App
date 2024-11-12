@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Feed.css";
-import SendPost from "./SendPost/SendPost";
+import CreateQuestion from "./CreateQuestion/CreateQuestion";
 import Question from "./Question/Question";
 import { getAllQuestions } from "../../Features/Question/QuestionSlice/QuestionApi";
 
@@ -16,10 +16,10 @@ function Feed() {
 
   return (
     <div className="feed">
-      <SendPost />
+      <CreateQuestion />
 
       {questions?.map((question) => (
-        <Question question={question} key={question.id} />
+        <Question question={question} key={question._id} />
       ))}
     </div>
   );
