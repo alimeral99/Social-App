@@ -5,7 +5,7 @@ import { SlLike } from "react-icons/sl";
 import { SlDislike } from "react-icons/sl";
 import { GoComment } from "react-icons/go";
 
-function LikeCommentButtons() {
+function LikeCommentButtons({ toggleComments }) {
   return (
     <div className="like-commentButtons">
       <div className="button-container">
@@ -19,7 +19,7 @@ function LikeCommentButtons() {
       </div>
 
       <div className="button-container">
-        <GoComment />
+        <GoComment onClick={toggleComments} />
         <span className="comment-info">4</span>
       </div>
     </div>

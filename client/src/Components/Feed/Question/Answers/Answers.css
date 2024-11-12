@@ -1,6 +1,8 @@
 .answer {
   display: flex;
   padding: 10px;
+  padding-bottom: none;
+  border-bottom: 1px solid lightgrey;
 }
 
 .answer-content {
@@ -26,12 +28,21 @@
 
 .answer-text {
   margin-top: 4px;
-  font-size: 17px;
-  color: #555;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 200;
+  color: #333333;
 }
 
 .answer-buttons {
   display: flex;
   align-items: center;
   margin-top: 10px;
+}
+
+.answer-buttons > .button-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
 }
