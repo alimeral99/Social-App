@@ -1,0 +1,63 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  text-align: center;
+  color: #333;
+}
+
+.form-header {
+  color: #b92b27;
+  font-size: 25px;
+  font-weight: bolder;
+  font-family: "roboto";
+}
+
+.form-container > p {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.input-container {
+  margin-top: 10px;
+}
+
+.input-container > label {
+  display: block;
+  text-align: left;
+  font-weight: 500;
+}
+
+.input-container > input {
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid lightgray;
+  padding: 10px;
+  outline: none;
+}
+
+.btn-container {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.btn-container > .btn-register {
+  background-color: #1877f2;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+}

@@ -1,20 +1,19 @@
-import "./App.css";
-import Feed from "./Components/Feed/Feed";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Components/Header/Header";
-import Sidebar from "./Components/Sidebar/Sidebar";
-import Widget from "./Components/Widget/Widget";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <BrowserRouter>
+        <Header />
 
-      <div className="app-body">
-        <Sidebar />
-
-        <Feed />
-        <Widget />
-      </div>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
