@@ -1,5 +1,5 @@
 import axios from "axios";
-import API_URL from "../api";
+import API_URL from "../../api/api";
 import { getQuestions } from "./QuestionSlice";
 
 export const getAllQuestions = async (dispatch) => {

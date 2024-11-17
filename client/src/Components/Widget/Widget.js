@@ -2,7 +2,7 @@ import React from "react";
 import "./Widget.css";
 import FakeAd from "./FakeAd/FakeAd";
 
-function Widget(content) {
+function Widget() {
   return (
     <div className="widget">
       <FakeAd content="https://static-cse.canva.com/blob/1101020/create_ad-maker_lead.a2ca464d.jpg" />

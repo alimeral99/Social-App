@@ -1,7 +1,8 @@
 import React from "react";
-import Sidebar from "../../Sidebar/Sidebar";
-import Feed from "../../Feed/Feed";
-import Widget from "../../Widget/Widget";
+import "./Home.css";
+import Sidebar from "../../Components/Sidebar/Sidebar";
+import Feed from "../../Components/Feed/Feed";
+import Widget from "../../Components/Widget/Widget";
 
 function Home() {
   return (

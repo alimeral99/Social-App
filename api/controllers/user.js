@@ -4,9 +4,13 @@ const bcrypt = require("bcrypt");
 const register = async (req, res) => {
   const { username, email, password } = req.body;
 
-  console.log("test");
+  if (!username || !email || !password) {
+    return res.status(400).json("All fields are required!");
+  }
+
   try {
     let user = await User.findOne({ email });
+
     if (user) {
       return res.status(400).json("User already exist");
     }
@@ -22,7 +26,7 @@ const register = async (req, res) => {
 
     await user.save();
 
-    res.status(201).json("User registered successfully");
+    res.status(201).json(user);
   } catch (error) {
     res.status(500).json("Server error");
   }
@@ -34,12 +38,12 @@ const login = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json("Invalid credentials");
+      return res.status(400).json("User not found");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json("Invalid credentials");
+      return res.status(400).json("Incorrect password");
     }
 
     res.status(200).json({ message: "Login successful", user });
