@@ -1,7 +1,5 @@
-import { register, login } from "./userApi";
-import axios from "axios";
+import { register, login, logout } from "./userApi";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import API_URL from "../api/api";
 
 const initialState = {
   currentUser: null,
@@ -12,7 +10,7 @@ const initialState = {
 };
 
 export const registerUser = createAsyncThunk(
-  "user/register",
+  "auth/register",
   async (userData, { rejectWithValue }) => {
     try {
       const user = await register(userData);
@@ -36,6 +34,10 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const logoutUser = createAsyncThunk("auth/logout", async () => {
+  await logout();
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -77,17 +79,13 @@ const userSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.currentUser = null;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.currentUser = null;
       });
   },
 });
 
-export const {
-  registerSuccess,
-  registerFailure,
-  setRedirect,
-  reset,
-  logout,
-  setUpgradetoUserPremium,
-} = userSlice.actions;
+export const { reset } = userSlice.actions;
 
 export default userSlice.reducer;

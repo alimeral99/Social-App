@@ -22,7 +22,7 @@ function Login() {
       toast.error(message);
     }
 
-    if (currentUser || isSuccess) {
+    if (currentUser && isSuccess) {
       navigate("/home");
     }
 

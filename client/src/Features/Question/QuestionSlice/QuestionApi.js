@@ -15,7 +15,6 @@ export const getAllQuestions = async (dispatch) => {
 
 export const createQuestion = async (question, dispatch) => {
   try {
-    console.log(question);
     const { data } = await axios.post(`${API_URL}/question/add`, { question });
   } catch (error) {
     console.log(error);

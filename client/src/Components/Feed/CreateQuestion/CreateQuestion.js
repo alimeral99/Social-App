@@ -10,8 +10,10 @@ import { MdOutlineLiveHelp } from "react-icons/md";
 
 function CreateQuestion() {
   const [question, setQuestion] = useState("");
+  const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  console.log(currentUser);
   const handleQuestion = () => {
     createQuestion(question, dispatch);
 

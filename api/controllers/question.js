@@ -3,13 +3,11 @@ const { v4: uuidv4 } = require("uuid");
 
 const addQuestion = async (req, res) => {
   const { question } = req.body;
-
   try {
     const newQuestion = new Question({
       questionText: question,
       author: uuidv4(),
     });
-
     await newQuestion.save();
     res.status(201).json(newQuestion);
   } catch (error) {

@@ -72,3 +72,11 @@
   padding: 7px 10px;
   cursor: pointer;
 }
+
+.logout-btn {
+  margin-left: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

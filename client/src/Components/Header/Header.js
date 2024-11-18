@@ -1,6 +1,8 @@
 import React from "react";
 import "./Header.css";
+import { logoutUser } from "../../Features/User/UserSlice";
 
+import { useSelector, useDispatch } from "react-redux";
 import Avatar from "react-avatar";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiChatFollowUpLine } from "react-icons/ri";
@@ -8,6 +10,12 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineSearch } from "react-icons/md";
 
 function Header() {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <div className="navbar">
       <h1 className="navbar-logo">Social app</h1>
@@ -33,6 +41,10 @@ function Header() {
         <Avatar name="Foo Bar" size="30" round="150px" />
 
         <button className="profile-button">Add Question</button>
+
+        <button onClick={handleLogout} className="logout-btn">
+          Logout
+        </button>
       </div>
     </div>
   );
