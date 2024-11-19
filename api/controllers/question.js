@@ -1,13 +1,14 @@
 const Question = require("../models/question");
-const { v4: uuidv4 } = require("uuid");
 
 const addQuestion = async (req, res) => {
-  const { question } = req.body;
+  const { questionData } = req.body;
+
   try {
     const newQuestion = new Question({
-      questionText: question,
-      author: uuidv4(),
+      questionText: questionData,
+      author: req.user._id,
     });
+
     await newQuestion.save();
     res.status(201).json(newQuestion);
   } catch (error) {
@@ -17,10 +18,12 @@ const addQuestion = async (req, res) => {
 
 const getAllQuestions = async (req, res) => {
   try {
-    const questions = await Question.find().populate({
-      path: "answers",
-      populate: { path: "author", select: "username" },
-    });
+    const questions = await Question.find()
+      .populate("author", "username")
+      .populate({
+        path: "answers",
+        populate: { path: "author", select: "username" },
+      });
 
     res.status(200).json(questions);
   } catch (error) {

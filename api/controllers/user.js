@@ -55,10 +55,10 @@ const login = async (req, res) => {
     if (token) {
       res.status(200).json({
         user: {
-          token,
           id: user.id,
           email: user.email,
           username: user.username,
+          token: token,
         },
       });
     }

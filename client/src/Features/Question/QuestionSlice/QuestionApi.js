@@ -1,22 +1,25 @@
 import axios from "axios";
 import API_URL from "../../api/api";
-import { getQuestions } from "./QuestionSlice";
+import {} from "./QuestionSlice";
 
-export const getAllQuestions = async (dispatch) => {
-  try {
-    const { data } = await axios.get(`${API_URL}/question/getAllQuestions`);
+export const getAllQuestions = async () => {
+  const response = await axios.get(`${API_URL}/question/getAllQuestions`);
 
-    console.log(data);
-    dispatch(getQuestions(data));
-  } catch (error) {
-    console.log(error);
-  }
+  return response.data;
 };
 
-export const createQuestion = async (question, dispatch) => {
-  try {
-    const { data } = await axios.post(`${API_URL}/question/add`, { question });
-  } catch (error) {
-    console.log(error);
-  }
+export const addQuestion = async (questionData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.post(
+    `${API_URL}/question/add`,
+    { questionData },
+    config
+  );
+
+  return response.data;
 };
