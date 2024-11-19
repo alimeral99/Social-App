@@ -1,0 +1,38 @@
+.createAnswer-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f7f7f8;
+}
+
+.createAnswer-input {
+  width: 80%;
+  font-size: 16px;
+  resize: vertical;
+  border: none;
+  padding: 5px;
+  background: #ffffff;
+  transition: border-color 0.3s ease;
+}
+
+.createAnswer-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.createAnswer-submit {
+  margin-left: 20px;
+  width: 15%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.createAnswer-submit:hover {
+  background-color: #0056b3;
+}

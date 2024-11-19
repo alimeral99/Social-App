@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Question.css";
 import Answers from "./Answers/Answers";
 import LikeCommentButtons from "./LikeCommentButtons/LikeCommentButtons";
+import CreateAnswer from "./Answers/CreateAnswer/CreateAnswer";
 
 import Avatar from "react-avatar";
 import { format } from "date-fns";
@@ -38,6 +39,7 @@ function Question({ question }) {
 
       {isOpen && (
         <div className={`question-answers ${isOpen ? "open" : "close"}`}>
+          <CreateAnswer />
           {question.answers.map((answer) => (
             <Answers answer={answer} key={answer._id} />
           ))}
