@@ -1,17 +1,11 @@
-.answer {
-  display: flex;
+.answer-content {
   padding: 10px;
   padding-bottom: none;
   border-bottom: 1px solid lightgrey;
 }
 
-.answer-content {
-  padding: 5px;
-}
-
-.answer-header {
+.answerContent-box {
   display: flex;
-  align-items: center;
 }
 
 .answerOwner-username {
@@ -19,17 +13,17 @@
   font-weight: 500;
 }
 
-.answer-createdDate {
+.answerContent-createdDate {
   font-size: 15px;
   font-weight: 400;
   margin-left: 5px;
   color: #495057;
 }
 
-.answer-text {
+.answerContent-text {
   margin-top: 4px;
-  font-size: 18px;
-  line-height: 1.4;
+  font-size: 17px;
+  line-height: 1.3;
   font-weight: 200;
   color: #333333;
 }

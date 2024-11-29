@@ -1,4 +1,5 @@
 const Question = require("../models/question");
+const Answer = require("../models/answer");
 
 const addQuestion = async (req, res) => {
   const { questionData } = req.body;
@@ -18,16 +19,40 @@ const addQuestion = async (req, res) => {
 
 const getAllQuestions = async (req, res) => {
   try {
-    const questions = await Question.find()
-      .populate("author", "username")
-      .populate({
-        path: "answers",
-        populate: { path: "author", select: "username" },
-      });
-
+    const questions = await Question.aggregate([
+      {
+        $lookup: {
+          from: "users",
+          localField: "author",
+          foreignField: "_id",
+          as: "authorDetails",
+        },
+      },
+      {
+        $unwind: "$authorDetails",
+      },
+      {
+        $lookup: {
+          from: "answers",
+          localField: "_id",
+          foreignField: "questionId",
+          as: "answers",
+        },
+      },
+      {
+        $project: {
+          questionText: 1,
+          "authorDetails.username": 1,
+          likes: 1,
+          dislikes: 1,
+          createdAt: 1,
+          answerCount: { $size: "$answers" },
+        },
+      },
+    ]);
     res.status(200).json(questions);
   } catch (error) {
-    res.status(500).json("Server Erro");
+    res.status(500).json("Server Error");
   }
 };
 

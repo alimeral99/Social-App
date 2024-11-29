@@ -59,16 +59,13 @@ function Login() {
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type="text"
+              type="password"
             />
           </div>
 
           <div className="btn-container">
             <button className="btn-register">Login</button>
           </div>
-          <ToastContainer
-            position={window.innerWidth < 728 ? "bottom-center" : "top-center"}
-          />
         </form>
       </div>
     </div>

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Question.css";
-import Answers from "./Answers/Answers";
+import Answers from "./Answers/Answer";
 import LikeCommentButtons from "./LikeCommentButtons/LikeCommentButtons";
-import CreateAnswer from "./Answers/CreateAnswer/CreateAnswer";
 
 import Avatar from "react-avatar";
 import { format } from "date-fns";
@@ -34,15 +33,15 @@ function Question({ question }) {
           <h3 className="question-content">{question.questionText}</h3>
         </div>
 
-        <LikeCommentButtons toggleComments={toggleComments} />
+        <LikeCommentButtons
+          questionInfo={question}
+          toggleComments={toggleComments}
+        />
       </div>
 
       {isOpen && (
         <div className={`question-answers ${isOpen ? "open" : "close"}`}>
-          <CreateAnswer />
-          {question.answers.map((answer) => (
-            <Answers answer={answer} key={answer._id} />
-          ))}
+          <Answers questionId={question._id} />
         </div>
       )}
     </div>

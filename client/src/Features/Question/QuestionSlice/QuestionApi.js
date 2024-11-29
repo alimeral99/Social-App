@@ -21,5 +21,23 @@ export const addQuestion = async (questionData, token) => {
     config
   );
 
+  console.log(response);
+
+  return response.data;
+};
+
+export const addAnswer = async (answerData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.post(
+    `${API_URL}/answer/create`,
+    { answerData },
+    config
+  );
+
   return response.data;
 };

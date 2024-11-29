@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAllQuestions, addQuestion } from "./QuestionApi";
 
 const initialState = {
-  questions: null,
+  questions: [],
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -42,6 +42,7 @@ export const questionSlice = createSlice({
       .addCase(createQuestion.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.questions.push(action.payload);
       })
       .addCase(createQuestion.rejected, (state, action) => {
         state.isLoading = false;

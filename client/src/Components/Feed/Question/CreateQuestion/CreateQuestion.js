@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CreateQuestion.css";
-import { createQuestion } from "../../../Features/Question/QuestionSlice/QuestionSlice";
+import { createQuestion } from "../../../../Features/Question/QuestionSlice/QuestionSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Avatar from "react-avatar";
 import { HiOutlinePencilAlt } from "react-icons/hi";
@@ -9,7 +9,6 @@ import { MdOutlineLiveHelp } from "react-icons/md";
 
 function CreateQuestion() {
   const [question, setQuestion] = useState("");
-  const { currentUser } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 

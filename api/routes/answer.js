@@ -1,8 +1,10 @@
 const express = require("express");
-const { createAnswer } = require("../controllers/answer");
+const { createAnswer, getAnswer } = require("../controllers/answer");
+const { authenticateJWT } = require("../utils/AuthMiddleware");
 
 const router = express.Router();
 
-router.post("/create", createAnswer);
+router.post("/create", authenticateJWT, createAnswer);
+router.get("/getAnswer/:questionId", getAnswer);
 
 module.exports = router;

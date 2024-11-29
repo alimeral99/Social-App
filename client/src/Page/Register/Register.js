@@ -5,7 +5,7 @@ import { reset } from "../../Features/User/UserSlice";
 import { registerUser } from "../../Features/User/UserSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
@@ -72,15 +72,12 @@ function Register() {
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type="text"
+              type="password"
             />
           </div>
           <div className="btn-container">
             <button className="btn-register">Register</button>
           </div>
-          <ToastContainer
-            position={window.innerWidth < 728 ? "bottom-center" : "top-center"}
-          />
         </form>
       </div>
     </div>

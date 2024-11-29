@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Feed.css";
-import CreateQuestion from "./CreateQuestion/CreateQuestion";
+import CreateQuestion from "./Question/CreateQuestion/CreateQuestion";
 import Question from "./Question/Question";
 import { fetchQuestions } from "../../Features/Question/QuestionSlice/QuestionSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 function Feed() {
   const { questions, isSuccess } = useSelector((state) => state.question);
   const dispatch = useDispatch();
+
+  console.log(questions);
 
   useEffect(() => {
     dispatch(fetchQuestions());
