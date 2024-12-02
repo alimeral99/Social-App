@@ -1,7 +1,7 @@
 .answer-content {
   padding: 10px;
   padding-bottom: none;
-  border-bottom: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
 }
 
 .answerContent-box {

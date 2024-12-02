@@ -27,10 +27,16 @@ const createAnswer = async (req, res) => {
 };
 
 const getAnswer = async (req, res, next) => {
+  const { questionId } = req.params;
+  const { offset = 0, limit = 2 } = req.query;
+
   try {
     const answers = await Answer.find({
-      questionId: req.params.questionId,
-    }).populate("author", "username");
+      questionId: questionId,
+    })
+      .skip(offset)
+      .limit(limit)
+      .populate("author", "username");
 
     if (answers.length === 0) {
       return res.status(404).json("No comments found for the given post.");

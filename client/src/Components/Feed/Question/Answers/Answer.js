@@ -9,8 +9,10 @@ import axios from "axios";
 function Answers({ questionId }) {
   const [answers, setAnswers] = useState([]);
   const [answerError, setAnswerError] = useState("");
+  const [offset, setOffset] = useState(2);
   const [answerText, setAnswerText] = useState("");
-  const [error, setError] = useState("");
+  const [showMore, setShowMore] = useState(true);
+  const limit = 2;
 
   const { currentUser } = useSelector((state) => state.user);
 
@@ -52,6 +54,27 @@ function Answers({ questionId }) {
     setAnswerText("");
   };
 
+  const handleShowMore = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/answer/getAnswer/${questionId}`,
+        {
+          params: { offset, limit },
+        }
+      );
+      const newAnswers = response.data;
+
+      setAnswers((prev) => [...prev, ...newAnswers]);
+      setOffset((prev) => prev + newAnswers.length);
+
+      if (newAnswers.length < limit) {
+        setShowMore(false);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div>
       <div className="create-answer">
@@ -72,6 +95,16 @@ function Answers({ questionId }) {
         answers.map((answer) => (
           <AnswerContent answerInfo={answer} key={answer._id} />
         ))}
+
+      {showMore ? (
+        <div className="showmoreBtn-container">
+          <button className="showmore-btn" onClick={handleShowMore}>
+            Show More
+          </button>
+        </div>
+      ) : (
+        <p className="showmore-info">no more comments</p>
+      )}
     </div>
   );
 }
