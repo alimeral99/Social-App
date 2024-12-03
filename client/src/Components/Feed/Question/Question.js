@@ -17,10 +17,16 @@ function Question({ question }) {
     <div className="question">
       <div className="question-container">
         <div className="question-header">
-          <Avatar name="Foo Bar" size="30" round="150px" />
+          <Avatar
+            name={question.authorDetails?.username}
+            size="30"
+            round="150px"
+          />
           <div className="question-owner">
-            {question.author && (
-              <h4 className="questionOwner-name">{question.author.username}</h4>
+            {question.authorDetails && (
+              <h4 className="questionOwner-name">
+                {question.authorDetails.username}
+              </h4>
             )}
             <span className="question-createdDate">
               {format(question.createdAt, "dd MMMM yyyy")}

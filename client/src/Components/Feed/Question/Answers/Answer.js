@@ -8,11 +8,8 @@ import axios from "axios";
 
 function Answers({ questionId }) {
   const [answers, setAnswers] = useState([]);
-  const [answerError, setAnswerError] = useState("");
-  const [offset, setOffset] = useState(2);
   const [answerText, setAnswerText] = useState("");
   const [showMore, setShowMore] = useState(true);
-  const limit = 2;
 
   const { currentUser } = useSelector((state) => state.user);
 
@@ -25,7 +22,7 @@ function Answers({ questionId }) {
 
         setAnswers(response.data);
       } catch (error) {
-        setAnswerError(error.response.data);
+        console.log(error);
       }
     };
     handleAnswer();
@@ -55,19 +52,23 @@ function Answers({ questionId }) {
   };
 
   const handleShowMore = async () => {
+    const offset = answers.length;
+
     try {
       const response = await axios.get(
         `http://localhost:8080/answer/getAnswer/${questionId}`,
         {
-          params: { offset, limit },
+          params: { offset },
         }
       );
+
       const newAnswers = response.data;
 
-      setAnswers((prev) => [...prev, ...newAnswers]);
-      setOffset((prev) => prev + newAnswers.length);
+      console.log(newAnswers);
 
-      if (newAnswers.length < limit) {
+      setAnswers((prev) => [...prev, ...newAnswers]);
+
+      if (newAnswers.length === 0) {
         setShowMore(false);
       }
     } catch (error) {
@@ -78,7 +79,6 @@ function Answers({ questionId }) {
   return (
     <div>
       <div className="create-answer">
-        {answerError && <p>{answerError}</p>}
         <form onSubmit={handleCreateAnswer} className="createAnswer-form">
           <textarea
             placeholder="plase add your answer"
@@ -90,20 +90,24 @@ function Answers({ questionId }) {
           <button className="createAnswer-submit">Add Comment</button>
         </form>
       </div>
-
-      {answers &&
+      {answers.length === 0 ? (
+        <p>No comments yet!</p>
+      ) : (
         answers.map((answer) => (
           <AnswerContent answerInfo={answer} key={answer._id} />
-        ))}
+        ))
+      )}
 
-      {showMore ? (
+      {answers.length > 0 && showMore && (
         <div className="showmoreBtn-container">
           <button className="showmore-btn" onClick={handleShowMore}>
-            Show More
+            Daha fazla yorum göster
           </button>
         </div>
-      ) : (
-        <p className="showmore-info">no more comments</p>
+      )}
+
+      {!showMore && answers.length > 0 && (
+        <p className="shomore-info">no answer more</p>
       )}
     </div>
   );

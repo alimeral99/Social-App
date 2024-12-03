@@ -38,10 +38,6 @@ const getAnswer = async (req, res, next) => {
       .limit(limit)
       .populate("author", "username");
 
-    if (answers.length === 0) {
-      return res.status(404).json("No comments found for the given post.");
-    }
-
     res.status(200).json(answers);
   } catch (error) {
     next(error);
