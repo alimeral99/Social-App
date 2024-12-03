@@ -6,27 +6,33 @@ import AnswerContent from "./AnswerContent/AnswerContent";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
-function Answers({ questionId }) {
+function Answers({ questionId, answerCount }) {
   const [answers, setAnswers] = useState([]);
   const [answerText, setAnswerText] = useState("");
   const [showMore, setShowMore] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
-    const handleAnswer = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/answer/getAnswer/${questionId}`
-        );
+    ///if there is no answer
+    if (answerCount > 0) {
+      setLoading(true);
+      const handleAnswer = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:8080/answer/getAnswer/${questionId}`
+          );
 
-        setAnswers(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    handleAnswer();
-  }, [questionId]);
+          setAnswers(response.data);
+          setLoading(false);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      handleAnswer();
+    }
+  }, [questionId, answerCount]);
 
   const handleCreateAnswer = async (e) => {
     e.preventDefault();
@@ -76,6 +82,8 @@ function Answers({ questionId }) {
     }
   };
 
+  if (loading) return <p>Loading answers...</p>;
+
   return (
     <div>
       <div className="create-answer">
@@ -107,7 +115,7 @@ function Answers({ questionId }) {
       )}
 
       {!showMore && answers.length > 0 && (
-        <p className="shomore-info">no answer more</p>
+        <p className="showmore-info">no answer more</p>
       )}
     </div>
   );

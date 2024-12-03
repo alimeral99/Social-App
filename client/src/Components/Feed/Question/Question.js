@@ -47,7 +47,10 @@ function Question({ question }) {
 
       {isOpen && (
         <div className={`question-answers ${isOpen ? "open" : "close"}`}>
-          <Answers questionId={question._id} />
+          <Answers
+            questionId={question._id}
+            answerCount={question.answerCount}
+          />
         </div>
       )}
     </div>
