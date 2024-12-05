@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LikeCommentButtons.css";
+import { toggleLike } from "../../../../Features/Question/QuestionSlice/QuestionSlice";
 
 import { SlLike } from "react-icons/sl";
 import { SlDislike } from "react-icons/sl";
 import { GoComment } from "react-icons/go";
 
+import { useSelector, useDispatch } from "react-redux";
+
 function LikeCommentButtons({ questionInfo, toggleComments }) {
+  const [checkLike, setCheckLike] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleLikeQuestion = async () => {
+    dispatch(toggleLike(questionInfo._id));
+  };
+
   return (
     <div className="like-commentButtons">
-      <div className="button-container">
-        <SlLike />
-        <span className="like-info">{questionInfo.likes}</span>
+      <div onClick={handleLikeQuestion} className="button-container">
+        <SlLike style={{ color: questionInfo.hasLiked ? "red" : "black" }} />
+        <span className="like-info">{questionInfo.likeCount}</span>
       </div>
 
       <div className="button-container">
@@ -18,8 +28,8 @@ function LikeCommentButtons({ questionInfo, toggleComments }) {
         <span className="dislike-info">{questionInfo.dislikes}</span>
       </div>
 
-      <div className="button-container">
-        <GoComment onClick={toggleComments} />
+      <div className="button-container" onClick={toggleComments}>
+        <GoComment />
         <span className="comment-info">{questionInfo.answerCount}</span>
       </div>
     </div>

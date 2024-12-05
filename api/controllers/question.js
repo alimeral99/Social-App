@@ -1,5 +1,5 @@
 const Question = require("../models/question");
-const Answer = require("../models/answer");
+const Like = require("../models/likes");
 
 const addQuestion = async (req, res) => {
   const { questionData } = req.body;
@@ -15,6 +15,35 @@ const addQuestion = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
+};
+
+const likeQuestion = async (req, res) => {
+  const { questionId } = req.params;
+  const userId = req.user._id;
+
+  const question = await Question.findById(questionId);
+
+  const likeControl = question.likes.includes(userId);
+
+  if (likeControl) {
+    // liked already, so unlike
+    question.likeCount = question.likeCount - 1;
+    question.likes.remove(userId);
+    question.save();
+
+    return res.status(200).json({ likeCount: question.likeCount });
+  }
+
+  // like
+
+  question.likeCount = question.likeCount + 1;
+  question.likes.push(userId);
+  question.save();
+
+  res.status(200).json({
+    likeCount: question.likeCount,
+    hasLiked: question.likes.includes(userId),
+  });
 };
 
 const getAllQuestions = async (req, res) => {
@@ -43,9 +72,8 @@ const getAllQuestions = async (req, res) => {
         $project: {
           questionText: 1,
           "authorDetails.username": 1,
-          likes: 1,
-          dislikes: 1,
           createdAt: 1,
+          likeCount: 1,
           answerCount: { $size: "$answers" },
         },
       },
@@ -58,5 +86,6 @@ const getAllQuestions = async (req, res) => {
 
 module.exports = {
   addQuestion,
+  likeQuestion,
   getAllQuestions,
 };

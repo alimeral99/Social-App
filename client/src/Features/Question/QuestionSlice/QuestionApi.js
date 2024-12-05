@@ -21,9 +21,27 @@ export const addQuestion = async (questionData, token) => {
     config
   );
 
-  console.log(response);
-
   return response.data;
+};
+
+export const likeQuestion = async (questionId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(
+    `${API_URL}/question/likes/${questionId}`,
+    {},
+    config
+  );
+
+  return {
+    questionId,
+    likeCount: response.data.likeCount,
+    hasLiked: response.data.hasLiked,
+  };
 };
 
 export const addAnswer = async (answerData, token) => {
