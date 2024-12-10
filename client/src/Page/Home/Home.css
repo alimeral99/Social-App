@@ -2,7 +2,6 @@ html {
   background-color: #f7f7f8;
 }
 
-.home-body {
-  display: flex;
+.home {
   margin-top: 10px;
 }

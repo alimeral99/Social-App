@@ -9,8 +9,6 @@ function Feed() {
   const { questions, isSuccess } = useSelector((state) => state.question);
   const dispatch = useDispatch();
 
-  console.log(questions);
-
   useEffect(() => {
     dispatch(fetchQuestions());
   }, []);

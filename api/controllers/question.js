@@ -1,5 +1,4 @@
 const Question = require("../models/question");
-const Like = require("../models/likes");
 
 const addQuestion = async (req, res) => {
   const { questionData } = req.body;
@@ -46,6 +45,36 @@ const likeQuestion = async (req, res) => {
   });
 };
 
+const categoryKeywords = {
+  technology: ["programming", "javascript", "software", "technology"],
+  health: ["medicine", "health", "mental health", "exercise", "therapy"],
+  science: ["nature", "research", "physics", "biology", "chemistry"],
+  cooking: ["pizza", "coffee", "hamburger", "cook", "dessert"],
+  business: ["startup", "entrepreneurship", "marketing", "finance"],
+};
+
+const searchQuestionsByCategory = async (req, res) => {
+  const { category } = req.query;
+
+  const keywords = categoryKeywords[category];
+
+  if (!keywords) {
+    return res.status(400).json({ message: "Invalid category" });
+  }
+
+  try {
+    const questions = await Question.find({
+      $or: keywords.map((keyword) => ({
+        questionText: { $regex: keyword, $options: "i" },
+      })),
+    }).populate("author", "username");
+
+    res.status(200).json(questions);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong", error });
+  }
+};
+
 const getAllQuestions = async (req, res) => {
   try {
     const questions = await Question.aggregate([
@@ -54,11 +83,11 @@ const getAllQuestions = async (req, res) => {
           from: "users",
           localField: "author",
           foreignField: "_id",
-          as: "authorDetails",
+          as: "author",
         },
       },
       {
-        $unwind: "$authorDetails",
+        $unwind: "$author",
       },
       {
         $lookup: {
@@ -71,7 +100,7 @@ const getAllQuestions = async (req, res) => {
       {
         $project: {
           questionText: 1,
-          "authorDetails.username": 1,
+          "author.username": 1,
           createdAt: 1,
           likeCount: 1,
           answerCount: { $size: "$answers" },
@@ -88,4 +117,5 @@ module.exports = {
   addQuestion,
   likeQuestion,
   getAllQuestions,
+  searchQuestionsByCategory,
 };

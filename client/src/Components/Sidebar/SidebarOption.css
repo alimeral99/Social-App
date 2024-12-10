@@ -25,10 +25,11 @@
   margin-left: 20px;
 }
 
-.sidebar-option > p {
+.sidebar-option > .category-text {
   margin-left: 10px;
   color: gray;
   font-weight: 400;
   text-transform: capitalize;
+  text-decoration: none;
   font-size: 15px;
 }

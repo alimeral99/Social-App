@@ -17,15 +17,11 @@ function Question({ question }) {
     <div className="question">
       <div className="question-container">
         <div className="question-header">
-          <Avatar
-            name={question.authorDetails?.username}
-            size="30"
-            round="150px"
-          />
+          <Avatar name={question.author?.username} size="30" round="150px" />
           <div className="question-owner">
-            {question.authorDetails && (
+            {question.author && (
               <h4 className="questionOwner-name">
-                {question.authorDetails.username}
+                {question.author?.username}
               </h4>
             )}
             <span className="question-createdDate">
