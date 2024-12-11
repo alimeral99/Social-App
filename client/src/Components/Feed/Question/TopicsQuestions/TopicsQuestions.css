@@ -1,6 +1,28 @@
 .topics-questions {
+  margin-top: 10px;
   margin-left: 240px;
   width: 800px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.category-info {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid lightgray;
+  padding: 5px;
+  width: 50%;
+}
+
+.category-photo {
+  height: 60px;
+  width: 60px;
+  border: 1px solid lightgray;
+}
+
+.category-name {
+  text-transform: capitalize;
+  margin-left: 10px;
+  font-family: "roboto";
 }

@@ -44,6 +44,14 @@ export const likeQuestion = async (questionId, token) => {
   };
 };
 
+export const getQuestionsByCategory = async (category) => {
+  const response = await axios.get("http://localhost:8080/question/search", {
+    params: { category },
+  });
+
+  return response.data;
+};
+
 export const addAnswer = async (answerData, token) => {
   const config = {
     headers: {

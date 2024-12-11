@@ -9,8 +9,11 @@ function SidebarOption({ imageLink, category }) {
     <div className="sidebar-options">
       <div className="sidebar-option">
         <img src={imageLink} alt="image" />
-        <p></p>
-        <Link className="category-text" to={`/topics/${category}`}>
+        <Link
+          className="category-text"
+          to={`/topics/${category}`}
+          state={{ photo: imageLink }}
+        >
           {category}
         </Link>
       </div>

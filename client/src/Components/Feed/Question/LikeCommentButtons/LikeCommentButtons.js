@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LikeCommentButtons.css";
 import { toggleLike } from "../../../../Features/Question/QuestionSlice/QuestionSlice";
 
+import { toast } from "react-toastify";
 import { SlLike } from "react-icons/sl";
 import { SlDislike } from "react-icons/sl";
 import { GoComment } from "react-icons/go";
@@ -9,7 +10,9 @@ import { GoComment } from "react-icons/go";
 import { useSelector, useDispatch } from "react-redux";
 
 function LikeCommentButtons({ questionInfo, toggleComments }) {
-  const [checkLike, setCheckLike] = useState(false);
+  const { questions, isSuccess, isError, message } = useSelector(
+    (state) => state.question
+  );
   const dispatch = useDispatch();
 
   const handleLikeQuestion = async () => {

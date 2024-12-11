@@ -1,34 +1,32 @@
 import React, { useEffect, useState } from "react";
 import "./TopicsQuestions.css";
-import { useParams } from "react-router-dom";
+import { fetchQuestionsByCategory } from "../../../../Features/Question/QuestionSlice/QuestionSlice";
+
+import { useLocation, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Question from "../Question";
 import axios from "axios";
 
 function TopicQuestions() {
-  const [topicQuestions, setTopicQuestions] = useState([]);
+  const { filteredQuestions } = useSelector((state) => state.question);
+
   const { category } = useParams();
+  const location = useLocation();
+  const { photo } = location.state || {};
+  const dispatch = useDispatch();
+  console.log(filteredQuestions);
 
   useEffect(() => {
-    const fetchCategoryData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/question/search",
-          {
-            params: { category },
-          }
-        );
-        setTopicQuestions(response.data);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      }
-    };
-    fetchCategoryData();
+    dispatch(fetchQuestionsByCategory(category));
   }, [category]);
 
   return (
     <div className="topics-questions">
-      <h1>Topic Questions</h1>
-      {topicQuestions?.map((question) => (
+      <div className="category-info">
+        {photo && <img className="category-photo" src={photo} alt="Profile" />}
+        <h2 className="category-name">{category}</h2>
+      </div>
+      {filteredQuestions?.map((question) => (
         <Question question={question} key={question._id} />
       ))}
     </div>

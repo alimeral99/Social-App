@@ -1,8 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllQuestions, addQuestion, likeQuestion } from "./QuestionApi";
+import {
+  getAllQuestions,
+  addQuestion,
+  likeQuestion,
+  getQuestionsByCategory,
+} from "./QuestionApi";
 
 const initialState = {
   questions: [],
+  filteredQuestions: [],
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -27,6 +33,17 @@ export const fetchQuestions = createAsyncThunk(
   async () => {
     const response = await getAllQuestions();
     return response;
+  }
+);
+
+export const fetchQuestionsByCategory = createAsyncThunk(
+  "questions/fetchQuestionsBycategory",
+  async (category, thunkAPI) => {
+    try {
+      return await getQuestionsByCategory(category);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
   }
 );
 
@@ -84,15 +101,38 @@ export const questionSlice = createSlice({
         const question = state.questions.find(
           (question) => question._id === questionId
         );
+
         if (question) {
           question.likeCount = likeCount;
           question.hasLiked = hasLiked;
+        }
+
+        const filteredQuestion = state.filteredQuestions.find(
+          (q) => q._id === questionId
+        );
+        if (filteredQuestion) {
+          filteredQuestion.likeCount = likeCount;
+          filteredQuestion.hasLiked = hasLiked;
         }
         state.isLoading = false;
       })
       .addCase(toggleLike.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = action.payload;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(fetchQuestionsByCategory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchQuestionsByCategory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.filteredQuestions = action.payload;
+      })
+      .addCase(fetchQuestionsByCategory.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });
