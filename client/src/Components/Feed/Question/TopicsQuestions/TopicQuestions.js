@@ -10,11 +10,12 @@ import axios from "axios";
 function TopicQuestions() {
   const { filteredQuestions } = useSelector((state) => state.question);
 
+  console.log(filteredQuestions);
+
   const { category } = useParams();
   const location = useLocation();
   const { photo } = location.state || {};
   const dispatch = useDispatch();
-  console.log(filteredQuestions);
 
   useEffect(() => {
     dispatch(fetchQuestionsByCategory(category));

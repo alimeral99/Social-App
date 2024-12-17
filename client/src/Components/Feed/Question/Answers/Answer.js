@@ -7,17 +7,20 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
 function Answers({ questionId, answerCount }) {
-  const [answers, setAnswers] = useState([]);
   const [answerText, setAnswerText] = useState("");
+  const [answers, setAnswers] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const { currentUser } = useSelector((state) => state.user);
 
+  console.log(questionId);
+
   useEffect(() => {
-    ///if there is no answer
+    // there is no answer
     if (answerCount > 0) {
       setLoading(true);
+
       const handleAnswer = async () => {
         try {
           const response = await axios.get(
@@ -70,8 +73,6 @@ function Answers({ questionId, answerCount }) {
 
       const newAnswers = response.data;
 
-      console.log(newAnswers);
-
       setAnswers((prev) => [...prev, ...newAnswers]);
 
       if (newAnswers.length === 0) {
@@ -98,15 +99,15 @@ function Answers({ questionId, answerCount }) {
           <button className="createAnswer-submit">Add Comment</button>
         </form>
       </div>
-      {answers.length === 0 ? (
+      {answers?.length === 0 ? (
         <p>No comments yet!</p>
       ) : (
-        answers.map((answer) => (
+        answers?.map((answer) => (
           <AnswerContent answerInfo={answer} key={answer._id} />
         ))
       )}
 
-      {answers.length > 0 && showMore && (
+      {answers?.length > 0 && showMore && (
         <div className="showmoreBtn-container">
           <button className="showmore-btn" onClick={handleShowMore}>
             Daha fazla yorum göster
@@ -114,7 +115,7 @@ function Answers({ questionId, answerCount }) {
         </div>
       )}
 
-      {!showMore && answers.length > 0 && (
+      {!showMore && answers?.length > 0 && (
         <p className="showmore-info">no answer more</p>
       )}
     </div>

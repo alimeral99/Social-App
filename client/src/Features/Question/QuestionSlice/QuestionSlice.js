@@ -4,6 +4,7 @@ import {
   addQuestion,
   likeQuestion,
   getQuestionsByCategory,
+  addAnswer,
 } from "./QuestionApi";
 
 const initialState = {
@@ -54,6 +55,19 @@ export const toggleLike = createAsyncThunk(
       const { user } = thunkAPI.getState().user.currentUser;
 
       return await likeQuestion(questionId, user.token);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const createAnswer = createAsyncThunk(
+  "questions/createAnswer",
+  async (answerData, thunkAPI) => {
+    try {
+      const { user } = thunkAPI.getState().user.currentUser;
+
+      return await addQuestion(answerData, user.token);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
     }

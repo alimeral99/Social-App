@@ -103,7 +103,7 @@ const getAllQuestions = async (req, res) => {
           "author.username": 1,
           createdAt: 1,
           likeCount: 1,
-          answerCount: { $size: "$answers" },
+          answerCount: 1,
         },
       },
     ]);
