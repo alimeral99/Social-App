@@ -77,7 +77,41 @@ export const createAnswer = createAsyncThunk(
 export const questionSlice = createSlice({
   name: "question",
   initialState,
-  reducers: {},
+  reducers: {
+    updateAnswerCount: (state, action) => {
+      const { questionId, answerCount } = action.payload;
+      const question = state.questions.find((q) => q._id === questionId);
+
+      if (question) {
+        question.answerCount = answerCount;
+      }
+
+      const filteredQuestion = state.filteredQuestions.find(
+        (q) => q._id === questionId
+      );
+      if (filteredQuestion) {
+        filteredQuestion.answerCount = answerCount;
+      }
+    },
+    updateQuestionLikeCount: (state, action) => {
+      const { questionId, likeCount } = action.payload;
+      const question = state.questions.find(
+        (question) => question._id === questionId
+      );
+
+      if (question) {
+        question.likeCount = likeCount;
+      }
+
+      const filteredQuestion = state.filteredQuestions.find(
+        (question) => question._id === questionId
+      );
+
+      if (filteredQuestion) {
+        filteredQuestion.likeCount = likeCount;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createQuestion.pending, (state) => {
@@ -111,13 +145,12 @@ export const questionSlice = createSlice({
         state.isError = null;
       })
       .addCase(toggleLike.fulfilled, (state, action) => {
-        const { questionId, likeCount, hasLiked } = action.payload;
+        const { questionId, hasLiked } = action.payload;
         const question = state.questions.find(
           (question) => question._id === questionId
         );
 
         if (question) {
-          question.likeCount = likeCount;
           question.hasLiked = hasLiked;
         }
 
@@ -125,7 +158,6 @@ export const questionSlice = createSlice({
           (q) => q._id === questionId
         );
         if (filteredQuestion) {
-          filteredQuestion.likeCount = likeCount;
           filteredQuestion.hasLiked = hasLiked;
         }
         state.isLoading = false;
@@ -151,6 +183,7 @@ export const questionSlice = createSlice({
   },
 });
 
-export const {} = questionSlice.actions;
+export const { updateAnswerCount, updateQuestionLikeCount } =
+  questionSlice.actions;
 
 export default questionSlice.reducer;

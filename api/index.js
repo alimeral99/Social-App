@@ -1,20 +1,35 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
 const cors = require("cors");
+const http = require("http");
+const { Server } = require("socket.io");
 require("dotenv").config();
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
 
 app.get("/api", (req, res) => {
   res.send("API  working");
 });
 
 app.use(express.json());
+
 app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
   })
 );
+app.use(function (req, res, next) {
+  res.io = io;
+  next();
+});
 
 const userRouter = require("./routes/user");
 const questionRouter = require("./routes/question");
@@ -33,6 +48,6 @@ mongoose
     console.log(err);
   });
 
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT} `);
 });

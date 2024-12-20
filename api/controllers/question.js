@@ -30,7 +30,12 @@ const likeQuestion = async (req, res) => {
     question.likes.remove(userId);
     question.save();
 
-    return res.status(200).json({ likeCount: question.likeCount });
+    res.io.emit("update-like-count", {
+      questionId,
+      likeCount: question.likeCount,
+    });
+
+    return res.send();
   }
 
   // like
@@ -39,8 +44,12 @@ const likeQuestion = async (req, res) => {
   question.likes.push(userId);
   question.save();
 
-  res.status(200).json({
+  res.io.emit("update-like-count", {
+    questionId,
     likeCount: question.likeCount,
+  });
+
+  res.status(200).json({
     hasLiked: question.likes.includes(userId),
   });
 };

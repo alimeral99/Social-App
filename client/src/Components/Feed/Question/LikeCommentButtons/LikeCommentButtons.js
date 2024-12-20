@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./LikeCommentButtons.css";
-import { toggleLike } from "../../../../Features/Question/QuestionSlice/QuestionSlice";
+import {
+  toggleLike,
+  updateQuestionLikeCount,
+} from "../../../../Features/Question/QuestionSlice/QuestionSlice";
 
 import { toast } from "react-toastify";
 import { SlLike } from "react-icons/sl";
 import { SlDislike } from "react-icons/sl";
 import { GoComment } from "react-icons/go";
-
 import { useSelector, useDispatch } from "react-redux";
+import io from "socket.io-client";
+
+const socket = io("http://localhost:8080");
 
 function LikeCommentButtons({ questionInfo, toggleComments }) {
   const { questions, isSuccess, isError, message } = useSelector(
@@ -18,6 +23,17 @@ function LikeCommentButtons({ questionInfo, toggleComments }) {
   const handleLikeQuestion = async () => {
     dispatch(toggleLike(questionInfo._id));
   };
+
+  useEffect(() => {
+    socket.on("update-like-count", (updatedPost) => {
+      console.log(updatedPost);
+      dispatch(updateQuestionLikeCount(updatedPost));
+    });
+
+    return () => {
+      socket.off("likeUpdated");
+    };
+  }, [dispatch, questionInfo._id]);
 
   return (
     <div className="like-commentButtons">

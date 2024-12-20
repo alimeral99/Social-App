@@ -4,8 +4,6 @@ const Question = require("../models/question");
 const createAnswer = async (req, res) => {
   const { answerText, questionId } = req.body;
 
-  console.log(answerText, questionId);
-
   if (!answerText || !questionId) {
     return res.status(400).json("plaese fill all in field");
   }
@@ -19,11 +17,16 @@ const createAnswer = async (req, res) => {
 
     await newAnswer.save();
 
-    await Question.findByIdAndUpdate(
+    const question = await Question.findByIdAndUpdate(
       questionId,
       { $inc: { answerCount: 1 } },
       { new: true }
     );
+
+    res.io.emit("update-answer-count", {
+      questionId,
+      answerCount: question.answerCount,
+    });
 
     const populatedAnswer = await Answer.findById(newAnswer._id).populate(
       "author",

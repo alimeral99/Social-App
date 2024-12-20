@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Question.css";
 import Answers from "./Answers/Answer";
 import LikeCommentButtons from "./LikeCommentButtons/LikeCommentButtons";
+import { updateAnswerCount } from "../../../Features/Question/QuestionSlice/QuestionSlice";
 
 import Avatar from "react-avatar";
+import { useSelector, useDispatch } from "react-redux";
+
 import { format } from "date-fns";
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:8080");
 
 function Question({ question }) {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   function toggleComments() {
     setIsOpen((isOpen) => !isOpen);
   }
+
+  useEffect(() => {
+    socket.on("update-answer-count", (data) => {
+      dispatch(
+        updateAnswerCount({
+          questionId: data.questionId,
+          answerCount: data.answerCount,
+        })
+      );
+    });
+
+    return () => {
+      socket.off("update-answer-count");
+    };
+  }, [question.questionIdd, dispatch]);
 
   return (
     <div className="question">

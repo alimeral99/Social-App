@@ -39,7 +39,6 @@ export const likeQuestion = async (questionId, token) => {
 
   return {
     questionId,
-    likeCount: response.data.likeCount,
     hasLiked: response.data.hasLiked,
   };
 };
