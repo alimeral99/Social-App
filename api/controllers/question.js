@@ -84,6 +84,49 @@ const searchQuestionsByCategory = async (req, res) => {
   }
 };
 
+const getMostAnsweredQuestions = async (req, res) => {
+  try {
+    const questions = await Question.find()
+      .populate("author", "username")
+      .sort({ answerCount: -1 })
+      .limit(10); // İlk 10 sonucu getir
+    res.status(200).json(questions);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch most answered questions" });
+  }
+};
+
+const fetchTopQuestions = async (req, res) => {
+  const { type } = req.query;
+
+  console.log(type);
+
+  if (!type || !["liked", "answered", "newest"].includes(type)) {
+    return res
+      .status(400)
+      .send('Invalid query parameter. Use "liked", "answered", or "newest".');
+  }
+
+  try {
+    let sortField;
+    if (type === "liked") {
+      sortField = "likeCount";
+    } else if (type === "answered") {
+      sortField = "answerCount";
+    } else if (type === "newest") {
+      sortField = "createdAt";
+    }
+
+    const questions = await Question.find()
+      .sort({ [sortField]: type === "newest" ? -1 : 1 })
+      .limit(10)
+      .populate("author", "username");
+    res.json(questions);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch most liked questions" });
+  }
+};
+
 const getAllQuestions = async (req, res) => {
   try {
     const questions = await Question.aggregate([
@@ -126,5 +169,6 @@ module.exports = {
   addQuestion,
   likeQuestion,
   getAllQuestions,
+  fetchTopQuestions,
   searchQuestionsByCategory,
 };

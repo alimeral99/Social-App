@@ -5,8 +5,9 @@ import { ToastContainer } from "react-toastify";
 
 import Layout from "./Page/Layout/Layout";
 import Home from "./Page/Home/Home";
-import TopicsQuestions from "./Components/Feed/Question/TopicsQuestions/TopicQuestions";
+import QuestionsByCategory from "./Components/Feed/Question/QuestionsByCategory/QuestionsByCategory";
 import PrivateRoute from "./PrivateRoute";
+import TopQuestions from "./Components/Feed/Question/TopQuestions/TopQuestions";
 
 function App() {
   return (
@@ -24,7 +25,11 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="topics/:category" element={<TopicsQuestions />} />
+                <Route path="/topquestions/:type" element={<TopQuestions />} />
+                <Route
+                  path="/topics/:category"
+                  element={<QuestionsByCategory />}
+                />
               </Route>
             </Route>
           </Routes>

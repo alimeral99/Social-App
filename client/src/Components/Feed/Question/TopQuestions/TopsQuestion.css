@@ -1,0 +1,13 @@
+.top-questions {
+  margin-top: 10px;
+  margin-left: 240px;
+  width: 800px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.topQuestions-header {
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid lightgray;
+}

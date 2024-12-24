@@ -5,6 +5,8 @@ import { logoutUser } from "../../Features/User/UserSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Avatar from "react-avatar";
 import { AiOutlineHome } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
 import { RiChatFollowUpLine } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineSearch } from "react-icons/md";
@@ -18,7 +20,9 @@ function Header() {
 
   return (
     <div className="navbar">
-      <h1 className="navbar-logo">Social app</h1>
+      <Link to={"/"}>
+        <h1 className="navbar-logo">Social app</h1>
+      </Link>
 
       <div className="navbar-links">
         <div className="icon-container">

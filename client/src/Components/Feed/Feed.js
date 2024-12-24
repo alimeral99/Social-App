@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./Feed.css";
 import CreateQuestion from "./Question/CreateQuestion/CreateQuestion";
 import Question from "./Question/Question";
+import TopLinks from "./TopLinks/TopLinks";
 import { fetchQuestions } from "../../Features/Question/QuestionSlice/QuestionSlice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -15,6 +16,8 @@ function Feed() {
 
   return (
     <div className="feed">
+      <TopLinks />
+
       <CreateQuestion />
 
       {questions?.map((question) => (

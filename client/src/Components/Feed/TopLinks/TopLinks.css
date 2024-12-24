@@ -1,0 +1,20 @@
+/* Konteyner stil */
+.top-links-container {
+  display: flex;
+  margin: 10px 0;
+  background-color: #ffffff;
+  width: 90%;
+  padding: 10px;
+  border: 1px solid lightgray;
+}
+
+/* Linklerin temel stilleri */
+.top-link {
+  text-decoration: none;
+  background-color: #f9f9f9;
+  color: #9aa6b2;
+  font-size: 15px;
+  margin-left: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
