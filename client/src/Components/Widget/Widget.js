@@ -4,7 +4,7 @@ import FakeAd from "./FakeAd/FakeAd";
 
 function Widget() {
   const [visibleAds, setVisibleAds] = useState([0, 1]);
-
+  const [lastScroll, setLastScroll] = useState(0);
   const ads = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2zCnXYi8r3fNyVG2v4evhm08EFpPddRA0qQ&s",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr_l2IaT_LtD5n93vli_crEEh9lv4NiIXbgQ&s",
@@ -13,14 +13,14 @@ function Widget() {
   ];
 
   const handleScroll = () => {
-    const scrollPosition = window.scrollY;
+    const currentScroll = window.scrollY;
 
-    if (scrollPosition > 200) {
-      setVisibleAds([2, 3]);
-    } else if (scrollPosition > 400) {
-      setVisibleAds([3, 3]);
-    } else {
-      setVisibleAds([0, 1]);
+    if (Math.abs(currentScroll - lastScroll) >= 600) {
+      setLastScroll(currentScroll);
+      setVisibleAds(([first, second]) => [
+        (first + 1) % ads.length,
+        (second + 1) % ads.length,
+      ]);
     }
   };
 
@@ -30,11 +30,11 @@ function Widget() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScroll]);
 
   return (
     <div className="widget">
-      {visibleAds.map((adIndex) => (
+      {visibleAds.map((adIndex, idx) => (
         <FakeAd content={ads[adIndex]} />
       ))}
     </div>
