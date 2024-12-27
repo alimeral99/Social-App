@@ -25,7 +25,7 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="/topquestions/:type" element={<TopQuestions />} />
+                <Route path="/:type" element={<TopQuestions />} />
                 <Route
                   path="/topics/:category"
                   element={<QuestionsByCategory />}

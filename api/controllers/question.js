@@ -118,7 +118,7 @@ const fetchTopQuestions = async (req, res) => {
     }
 
     const questions = await Question.find()
-      .sort({ [sortField]: type === "newest" ? -1 : 1 })
+      .sort({ [sortField]: type === "newest" ? -1 : -1 })
       .limit(10)
       .populate("author", "username");
     res.json(questions);

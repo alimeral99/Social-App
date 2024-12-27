@@ -4,7 +4,6 @@ import {
   addQuestion,
   likeQuestion,
   getQuestionsByCategory,
-  addAnswer,
 } from "./QuestionApi";
 
 const initialState = {
@@ -111,6 +110,12 @@ export const questionSlice = createSlice({
         filteredQuestion.likeCount = likeCount;
       }
     },
+    reset: (state) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
+      state.message = "";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -183,7 +188,7 @@ export const questionSlice = createSlice({
   },
 });
 
-export const { updateAnswerCount, updateQuestionLikeCount } =
+export const { updateAnswerCount, updateQuestionLikeCount, reset } =
   questionSlice.actions;
 
 export default questionSlice.reducer;

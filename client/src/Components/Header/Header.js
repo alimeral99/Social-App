@@ -20,7 +20,7 @@ function Header() {
 
   return (
     <div className="navbar">
-      <Link to={"/"}>
+      <Link className="link" to={"/"}>
         <h1 className="navbar-logo">Social app</h1>
       </Link>
 

@@ -1,14 +1,25 @@
 import React, { useEffect } from "react";
 import "./Feed.css";
 import CreateQuestion from "./Question/CreateQuestion/CreateQuestion";
+import { toast } from "react-toastify";
+import { reset } from "../../Features/Question/QuestionSlice/QuestionSlice";
 import Question from "./Question/Question";
-import TopLinks from "./TopLinks/TopLinks";
 import { fetchQuestions } from "../../Features/Question/QuestionSlice/QuestionSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 function Feed() {
-  const { questions, isSuccess } = useSelector((state) => state.question);
+  const { questions, isSuccess, isError, message } = useSelector(
+    (state) => state.question
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isError && message) {
+      toast.error(message);
+    }
+
+    dispatch(reset());
+  }, [isError, message, dispatch]);
 
   useEffect(() => {
     dispatch(fetchQuestions());
@@ -16,8 +27,6 @@ function Feed() {
 
   return (
     <div className="feed">
-      <TopLinks />
-
       <CreateQuestion />
 
       {questions?.map((question) => (
