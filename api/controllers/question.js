@@ -8,9 +8,13 @@ const addQuestion = async (req, res) => {
       questionText: questionData,
       author: req.user._id,
     });
-
     await newQuestion.save();
-    res.status(201).json(newQuestion);
+    const populatedQuestion = await Question.findById(newQuestion._id).populate(
+      "author",
+      "username"
+    );
+
+    res.status(201).json(populatedQuestion);
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }

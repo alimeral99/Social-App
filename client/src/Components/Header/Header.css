@@ -84,3 +84,12 @@
 .link {
   text-decoration: none;
 }
+
+@media screen and (max-width: 880px) {
+  .navbar-searchbox {
+    display: none;
+  }
+  .navbar-logo {
+    font-size: 23px;
+  }
+}

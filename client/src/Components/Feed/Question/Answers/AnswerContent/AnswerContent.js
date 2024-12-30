@@ -9,7 +9,7 @@ function AnswerContent({ answerInfo }) {
   return (
     <div className="answer-content">
       <div className="answerContent-box">
-        <Avatar size="30" round="140px" />
+        <Avatar size="30" round="140px" name={answerInfo.author?.username} />
         <div className="answerContent-body">
           <h3 className="answerOwner-username">{answerInfo.author.username}</h3>
 
@@ -18,10 +18,10 @@ function AnswerContent({ answerInfo }) {
           </span>
 
           <p className="answerContent-text">{answerInfo.answerText}</p>
+
+          <AnswerLikeCommentBtn />
         </div>
       </div>
-
-      <AnswerLikeCommentBtn />
     </div>
   );
 }

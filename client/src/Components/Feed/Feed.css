@@ -1,6 +1,38 @@
 .feed {
   margin-left: 240px;
-  width: 750px;
+  width: 80%;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+@media screen and (max-width: 1223px) {
+  .feed {
+    width: 70%;
+    margin-left: 200px;
+  }
+}
+
+@media screen and (max-width: 1060px) {
+  .feed {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 942px) {
+  .feed {
+    width: 55%;
+    margin-left: 180px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .feed {
+    margin-left: 145px;
+  }
+}
+
+@media screen and (max-width: 618px) {
+  .feed {
+    width: 50%;
+  }
 }

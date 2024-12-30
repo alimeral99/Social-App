@@ -21,6 +21,8 @@ export const addQuestion = async (questionData, token) => {
     config
   );
 
+  console.log(response);
+
   return response.data;
 };
 

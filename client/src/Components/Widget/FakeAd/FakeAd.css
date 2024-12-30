@@ -2,13 +2,14 @@
   margin-top: 15px;
   margin-bottom: 15px;
   border: 1px solid lightgray;
-  padding: 10px;
+  padding: 5px;
   width: 80%;
+  margin-left: 50px;
 }
 
 .fakeAd > img {
   cursor: pointer;
-  width: 250px;
+  width: 100%;
 }
 
 .fakeAd > button {
