@@ -13,6 +13,8 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+const PORT = process.env.PORT || 3000;
+
 
 app.get("/api", (req, res) => {
   res.send("API  working");
@@ -48,6 +50,6 @@ mongoose
     console.log(err);
   });
 
-server.listen(process.env.PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server running on port ${process.env.PORT} `);
 });
