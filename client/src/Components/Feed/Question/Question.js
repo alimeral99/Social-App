@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { format } from "date-fns";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:8080");
+const socket = io("sa-backend-eta.vercel.app");
 
 function Question({ question }) {
   const [isOpen, setIsOpen] = useState(false);
