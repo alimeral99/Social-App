@@ -13,7 +13,7 @@ function TopQuestions() {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/question/most?type=${type}`
+          `sa-backend-eta.vercel.app/question/most?type=${type}`
         );
         console.log(response);
         setQuestions(response.data);
