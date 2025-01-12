@@ -24,7 +24,7 @@ function Answers({ questionId, answerCount }) {
       const handleAnswer = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8080/answer/getAnswer/${questionId}`
+            `sa-backend-eta.vercel.app/answer/getAnswer/${questionId}`
           );
 
           setAnswers(response.data);
