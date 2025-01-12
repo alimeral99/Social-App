@@ -48,7 +48,7 @@ function Answers({ questionId, answerCount }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/answer/create",
+        "sa-backend-eta.vercel.app/answer/create",
         { answerText, questionId },
         config
       );
@@ -65,7 +65,7 @@ function Answers({ questionId, answerCount }) {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/answer/getAnswer/${questionId}`,
+        `sa-backend-eta.vercel.app/answer/getAnswer/${questionId}`,
         {
           params: { offset },
         }
