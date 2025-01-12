@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://vercel.com/alis-projects-52c94424/sa-frontend",
     methods: ["GET", "POST"],
   },
 });
@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://vercel.com/alis-projects-52c94424/sa-frontend",
     credentials: true,
   })
 );
