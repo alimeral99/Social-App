@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { format } from "date-fns";
 import { io } from "socket.io-client";
 
-const socket = io("sa-backend-eta.vercel.app");
+const socket = io("socialapp-backend-lemon.vercel.app");
 
 function Question({ question }) {
   const [isOpen, setIsOpen] = useState(false);
