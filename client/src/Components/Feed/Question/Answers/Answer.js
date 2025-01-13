@@ -24,7 +24,7 @@ function Answers({ questionId, answerCount }) {
       const handleAnswer = async () => {
         try {
           const response = await axios.get(
-            `sa-backend-eta.vercel.app/answer/getAnswer/${questionId}`
+            `socialapp-backend-lemon.vercel.app/answer/getAnswer/${questionId}`
           );
 
           setAnswers(response.data);
@@ -48,7 +48,7 @@ function Answers({ questionId, answerCount }) {
 
     try {
       const response = await axios.post(
-        "sa-backend-eta.vercel.app/answer/create",
+        "socialapp-backend-lemon.vercel.app/answer/create",
         { answerText, questionId },
         config
       );
@@ -65,7 +65,7 @@ function Answers({ questionId, answerCount }) {
 
     try {
       const response = await axios.get(
-        `sa-backend-eta.vercel.app/answer/getAnswer/${questionId}`,
+        `socialapp-backend-lemon.vercel.app/answer/getAnswer/${questionId}`,
         {
           params: { offset },
         }
