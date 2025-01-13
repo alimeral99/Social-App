@@ -12,7 +12,7 @@ import { GoComment } from "react-icons/go";
 import { useSelector, useDispatch } from "react-redux";
 import io from "socket.io-client";
 
-const socket = io("socialapp-backend-lemon.vercel.app");
+const socket = io("https://social-app-0otu.onrender.com");
 
 function LikeCommentButtons({ questionInfo, toggleComments }) {
   const { questions, isSuccess, isError, message } = useSelector(
