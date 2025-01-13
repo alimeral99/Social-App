@@ -42,7 +42,10 @@ app.use("/question", questionRouter);
 app.use("/answer", answerRouter);
 
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(process.env.MONGO_URL,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB!");
   })
