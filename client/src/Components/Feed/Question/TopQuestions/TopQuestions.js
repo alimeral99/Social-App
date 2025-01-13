@@ -13,7 +13,7 @@ function TopQuestions() {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          `socialapp-backend-lemon.vercel.app/question/most?type=${type}`
+          `https://social-app-0otu.onrender.com/question/most?type=${type}`
         );
         console.log(response);
         setQuestions(response.data);
