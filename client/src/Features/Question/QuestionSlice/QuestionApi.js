@@ -46,7 +46,7 @@ export const likeQuestion = async (questionId, token) => {
 };
 
 export const getQuestionsByCategory = async (category) => {
-  const response = await axios.get("sa-backend-eta.vercel.app/question/search", {
+  const response = await axios.get("socialapp-backend-lemon.vercel.app/question/search", {
     params: { category },
   });
 
