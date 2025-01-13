@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "socialapp-frontend-rose.vercel.app",
+    origin: "sociallapp-frontend.vercel.app",
     methods: ["GET", "POST"],
   },
 });
@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "socialapp-frontend-rose.vercel.app",
+    origin: "sociallapp-frontend.vercel.app",
     credentials: true,
   })
 );
